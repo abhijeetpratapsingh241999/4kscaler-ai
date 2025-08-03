@@ -1,0 +1,337 @@
+/* Tailwind CSS v4 ko import kar rahe hain */
+@import 'tailwindcss';
+
+/* =============================================================== */
+/* Original HTML file se liya gaya saara Custom CSS */
+/* =============================================================== */
+
+:root {
+    --primary-color: #3b82f6;
+    --background-dark: #000000;
+    --container-dark: #111111;
+    --text-main-dark: #e5e7eb;
+    --text-secondary-dark: #9ca3af;
+    --background-light: #f1f5f9;
+    --container-light: #ffffff;
+    --text-main-light: #1e293b;
+    --text-secondary-light: #475569;
+}
+
+html.dark { 
+    color-scheme: dark; 
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-main-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow: hidden;
+}
+
+html.dark body {
+    background-color: var(--background-dark);
+    color: var(--text-main-dark);
+}
+
+/* Yahan badlav kiya gaya hai side baar desktop*/
+.glass-effect {
+    background: rgba(255, 255, 255, 0.05);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* Dark mode ke liye shadow */
+}
+
+html.light .glass-effect {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Light mode ke liye shadow */
+}
+
+.no-scrollbar::-webkit-scrollbar { 
+    display: none; 
+}
+.no-scrollbar { 
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+/* Yahan badlav kiya gaya hai */
+.page-main-container {
+    background: var(--container-light);
+    border-radius: 24px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+}
+
+html.dark .page-main-container {
+    background: var(--container-dark);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+}
+
+.bubble-button {
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+    border: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.bubble-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3);
+}
+
+.nav-item.active {
+    background: linear-gradient(45deg, var(--primary-color), #8b5cf6);
+    color: #ffffff;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Baaki saara CSS code waisa hi rahega */
+.preview-shadow-edge { box-shadow: 0px 10px 40px rgba(0,0,0,0.3); transition: all 0.4s ease-in-out; border-radius: 0.75rem; overflow: hidden; }
+.butterfly-glow { filter: drop-shadow(0 0 15px rgba(139, 92, 246, 0.5)) drop-shadow(0 0 15px rgba(59, 130, 246, 0.5)); }
+.glowing-border-card { position: relative; }
+.glowing-border-card::before { content: ''; position: absolute; inset: 0; border-radius: 1rem; padding: 1px; background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.1)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0.7; transition: opacity 0.3s; }
+html.light .glowing-border-card::before { background: linear-gradient(135deg, var(--primary-color), #a855f7); }
+#theme-toggle:hover { box-shadow: 0 0 15px var(--primary-color); }
+.gemini-btn-loader { width: 16px; height: 16px; border: 2px solid #fff; border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.code-block { background-color: #1a1a1a; color: #e5e7eb; border-radius: 0.5rem; padding: 1rem; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; white-space: pre-wrap; word-break: break-all; }
+html.light .code-block { background-color: #f3f4f6; color: #111827; }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out; padding-top: 0; padding-bottom: 0; }
+.faq-answer.open { max-height: 200px; padding-top: 1rem; padding-bottom: 1rem; }
+.faq-arrow { transition: transform 0.3s ease; }
+.faq-arrow.rotated { transform: rotate(180deg); }
+.video-shadow { box-shadow: 0 0 35px rgba(59, 130, 246, 0.25), 0 0 35px rgba(236, 72, 153, 0.15); }
+html.light .video-shadow { box-shadow: 0 0 45px rgba(59, 130, 246, 0.35), 0 0 45px rgba(219, 39, 119, 0.2); }
+.like-button .heart-icon-gradient { fill: url(#heart-gradient-inactive); transition: all 0.3s ease; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+.like-button.liked .heart-icon-gradient { fill: url(#heart-gradient-active); transform: scale(1.1); filter: drop-shadow(0 0 10px #f472b6) drop-shadow(0 0 15px #a855f7); }
+.plan-card { transition: transform 0.3s ease, box-shadow 0.3s ease; min-height: 420px; position: relative; border-radius: 1rem; }
+.plan-card:hover { transform: translateY(-12px) scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+html.light .plan-card { background: linear-gradient(145deg, #eef2f7, #ffffff); border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 8px 8px 20px #d9dce1, -8px -8px 20px #ffffff; }
+html.dark .plan-card { background: linear-gradient(145deg, #1a1a1e, #101012); border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 8px 8px 20px #0b0b0b, -8px -8px 20px #212125, inset 0 0 1px rgba(255,255,255,0.1); }
+html.light .plan-card.popular { border: 1px solid var(--primary-color); }
+html.dark .plan-card.popular { border: 1px solid var(--primary-color); box-shadow: 0 0 35px rgba(59, 130, 246, 0.3), 8px 8px 20px #0b0b0b, -8px -8px 20px #212125; }
+.popular-badge-container { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); z-index: 10; }
+.popular-badge { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+html.light .popular-badge { background: rgba(255, 255, 255, 0.7); border-color: rgba(0,0,0,0.1); color: var(--text-main-light); text-shadow: none; }
+#plan-toggle-container button { color: white; text-shadow: 0 0 6px rgba(255, 255, 255, 0.7), 0 0 10px rgba(59, 130, 246, 0.5); }
+#plan-toggle-container button.active { background: linear-gradient(45deg, var(--primary-color), #8b5cf6); color: white; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); }
+html.light #free-plan-button { background-color: #475569; color: white; text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); border-color: transparent; }
+html.dark #free-plan-button { background-color: #374151; color: #D1D5DB; }
+.upload-card-metallic { position: relative; overflow: hidden; background: linear-gradient(145deg, rgba(30, 41, 59, 0.4), rgba(15, 23, 42, 0.6)); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 15px 35px rgba(0,0,0,0.3); transition: all 0.4s ease; }
+html.light .upload-card-metallic { background: linear-gradient(145deg, rgba(226, 232, 240, 0.7), rgba(241, 245, 249, 0.9)); border-color: rgba(0,0,0,0.1); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+.upload-card-metallic::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(transparent, rgba(59, 130, 246, 0.3), transparent 30%); animation: rotate-glow 6s linear infinite; }
+@keyframes rotate-glow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.plan-overview-card { background: linear-gradient(145deg, rgba(30, 41, 59, 0.2), rgba(15, 23, 42, 0.4)); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1.5rem; padding: 2rem; position: relative; overflow: hidden; }
+html.light .plan-overview-card { background: linear-gradient(145deg, rgba(226, 232, 240, 0.7), rgba(241, 245, 249, 0.9)); border-color: rgba(0,0,0,0.1); }
+.plan-progress-ring__circle { transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1); transform: rotate(-90deg); transform-origin: 50% 50%; }
+.credit-pack-card { border-radius: 1rem; padding: 1.5rem; transition: all 0.3s ease-in-out; position: relative; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.15); background: linear-gradient(135deg, #1f2937, #111827); box-shadow: inset 0 1px 1px rgba(255,255,255,0.05), 0 10px 30px rgba(0,0,0,0.3); }
+.credit-pack-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: inset 0 1px 1px rgba(255,255,255,0.1), 0 0 30px rgba(59, 130, 246, 0.3), 0 0 20px rgba(139, 92, 246, 0.2); }
+html.light .credit-pack-card { background: linear-gradient(135deg, #e2e8f0, #f8fafc); border-color: rgba(0,0,0,0.1); box-shadow: inset 0 1px 1px #ffffff, 0 10px 20px rgba(0,0,0,0.05); }
+html.light .credit-pack-card:hover { box-shadow: inset 0 1px 1px #ffffff, 0 0 25px rgba(59, 130, 246, 0.2); }
+.billing-history-table { width: 100%; border-collapse: collapse; }
+.billing-history-table th, .billing-history-table td { padding: 1rem; text-align: left; }
+.billing-history-table thead th { border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-weight: 600; }
+html.light .billing-history-table thead th { border-bottom-color: rgba(0,0,0,0.1); }
+
+
+/* Explore Page Tab Buttons ke liye Naye Styles */
+
+.tab-button-text {
+    color: white;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+.tab-button-active {
+    background: linear-gradient(45deg, #3b82f6, #ec4899);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4), 0 4px 15px rgba(236, 72, 153, 0.3);
+}
+/* Bubble Button ke liye Moving Gradient Animation */
+.bubble-button {
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+    background-size: 300% 300%;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: gradient-animation 6s ease infinite;
+}
+
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.bubble-button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 20px rgba(236, 72, 153, 0.3);
+}
+
+
+/* For the animated gradient on 'AI Video Studio' */
+.animate-text-gradient {
+  background-size: 200% 200%;
+  animation: text-gradient-animation 5s ease infinite;
+}
+
+@keyframes text-gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* New class for the "Not Just a Tool, Your" text */
+
+/* Light Mode Styles (Default) */
+.hero-text-primary {
+  color: #000621; /* Ye black jaisa hi hai */
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Glow effect */
+}
+
+/* Dark Mode Styles for Class-Based Toggle */
+/* Ye code tab kaam karega jab aapke <body> ya <html> tag me "dark" class judegi */
+.dark .hero-text-primary {
+  color: #ffffff; /* White */
+  text-shadow: 0 0 8px rgba(227, 227, 227, 0.3); /* Glow effect */
+}
+
+
+/* User Profile Page Styles */
+
+.corner-vignette {
+  background: radial-gradient(circle at bottom left, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.dark .corner-vignette {
+  opacity: 1;
+}
+
+/* Light Mode Card Style */
+.glass-card { 
+  background: rgba(255, 255, 255, 0.6); 
+  backdrop-filter: blur(12px); 
+  -webkit-backdrop-filter: blur(12px); 
+  border: 1px solid rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); 
+  border-radius: 1rem; 
+  transition: all 0.3s ease; 
+}
+.glass-card:hover { 
+  transform: translateY(-5px); 
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.2); 
+}
+
+/* Dark Mode Card Style */
+.dark .glass-card { 
+  background: linear-gradient(145deg, rgba(30, 30, 30, 0.4), rgba(10, 10, 10, 0.4)); 
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); 
+}
+.dark .glass-card:hover { 
+  transform: translateY(-5px); 
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3); 
+  border-color: rgba(255, 255, 255, 0.15); 
+}
+
+/* Page Title Style */
+.account-title { 
+  font-family: 'Poppins', sans-serif; 
+  font-weight: 700; 
+  color: #1e293b; 
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.1); 
+}
+.dark .account-title { 
+  color: #ffffff; 
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5), 0 0 16px rgba(255, 255, 255, 0.3); 
+}
+
+/* General Text Glow */
+.text-shadow-glow { 
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.1); 
+}
+.dark .text-shadow-glow { 
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.4); 
+}
+
+/* Card Text Styles */
+.card-heading { color: #1e293b; }
+.dark .card-heading { color: #ffffff; }
+.card-subtext { color: #475569; }
+.dark .card-subtext { color: #94a3b8; }
+
+/* Progress Bar Background */
+.progress-bg { stroke: rgba(0, 0, 0, 0.1); }
+.dark .progress-bg { stroke: rgba(255, 255, 255, 0.1); }
+
+/* Manage Plan Button */
+.manage-plan-button { 
+  background-color: rgba(0,0,0,0.05); 
+  color: #334155; 
+  font-weight: 600; 
+  font-size: 0.875rem; 
+  padding: 8px 16px; 
+  border-radius: 8px; 
+  border: 1px solid rgba(0,0,0, 0.1); 
+  cursor: pointer; 
+  transition: all 0.3s ease; 
+}
+.dark .manage-plan-button { 
+  background-color: transparent; 
+  color: #f0f9ff; 
+  border-color: rgba(255, 255, 255, 0.2); 
+}
+.manage-plan-button:hover { 
+  background-color: rgba(0,0,0,0.1); 
+}
+.dark .manage-plan-button:hover { 
+  background-color: rgba(255, 255, 255, 0.1); 
+  border-color: rgba(255, 255, 255, 0.4); 
+}
+
+/* Security Button */
+.security-button { 
+  background-color: rgba(0,0,0,0.05); 
+  color: #334155; 
+  font-weight: 600; 
+  font-size: 0.875rem; 
+  padding: 8px 16px; 
+  border-radius: 8px; 
+  border: 1px solid rgba(0,0,0, 0.1); 
+  cursor: pointer; 
+  transition: all 0.3s ease; 
+}
+.dark .security-button { 
+  background-color: rgba(255, 255, 255, 0.05); 
+  color: #f0f9ff; 
+  border-color: rgba(255, 255, 255, 0.2); 
+}
+.security-button:hover { 
+  background-color: rgba(0,0,0,0.1); 
+}
+.dark .security-button:hover { 
+  background-color: rgba(255, 255, 255, 0.1); 
+  border-color: rgba(255, 255, 255, 0.4); 
+}
+
+/* New Styles for Profile Popup */
+.profile-popup-panel {
+  /* Light Mode Style */
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.dark .profile-popup-panel {
+  /* Dark Mode Style */
+  background: linear-gradient(145deg, rgba(30, 30, 30, 0.4), rgba(10, 10, 10, 0.4));
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Light border for contrast */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+
