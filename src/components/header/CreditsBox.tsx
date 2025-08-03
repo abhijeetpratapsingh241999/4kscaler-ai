@@ -1,0 +1,19 @@
+import React from 'react';
+import { BoltIcon } from '@heroicons/react/24/solid';
+
+const CreditsBox: React.FC = () => {
+  // Abhi ke liye hum credits ko hardcode kar rahe hain.
+  // Real application mein yeh data AppContext ya API se aa sakta hai.
+  const credits = 1250;
+
+  return (
+    <div className="flex items-center gap-2 glass-effect p-2 rounded-md" aria-label="Credits remaining">
+      <BoltIcon className="w-5 h-5 text-amber-500" />
+      <span className="font-semibold text-sm text-text-main-light dark:text-text-main-dark">
+        {credits.toLocaleString()}
+      </span>
+    </div>
+  );
+};
+
+export default CreditsBox;

@@ -1,0 +1,29 @@
+# Dependencies
+# Yeh folder saari project libraries rakhta hai, ise upload karna zaroori nahi hai
+/node_modules
+
+# Production build folder
+# Jab aap project ko deploy karne ke liye build karte hain, to yeh folder banta hai
+/build
+/dist
+
+# Environment variables
+# Is file mein aapke secret keys aur passwords hote hain, ise kabhi upload na karein
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Log files
+# Error aur debugging ki jaankari wali files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Mac aur Windows ki system files
+.DS_Store
+Thumbs.db
+
+# Test reports
+/coverage
