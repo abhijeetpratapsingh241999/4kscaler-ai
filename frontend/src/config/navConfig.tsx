@@ -42,10 +42,10 @@ export const navConfig: NavSection[] = [
     requiresAuth: true,
     items: [
       { id: 'my-creations', name: 'My Creations', icon: <RectangleStackIcon className="w-5 h-5" />, requiresAuth: true }, // My Creations सबसे ऊपर
-      { id: 'ai-lab', name: 'AI Lab', icon: <BeakerIcon className="w-5 h-5" />, requiresAuth: true }, // फिर AI Lab
+      // { id: 'ai-lab', name: 'AI Lab', icon: <BeakerIcon className="w-5 h-5" />, requiresAuth: true }, // फिर AI Lab
       { id: 'upload', name: 'Upload', icon: <ArrowUpTrayIcon className="w-5 h-5" />, requiresAuth: true }, // फिर Upload
       { id: 'billing', name: 'Billing', icon: <CreditCardIcon className="w-5 h-5" />, requiresAuth: true }, // फिर Billing
-      { id: 'api-access', name: 'API Access', icon: <CodeBracketIcon className="w-5 h-5" />, requiresAuth: true }, // और अंत में API Access
+      //{ id: 'api-access', name: 'API Access', icon: <CodeBracketIcon className="w-5 h-5" />, requiresAuth: true }, // और अंत में API Access
       // Profile और Settings के लिंक्स yahan se hata diye gaye hain
     ]
   },

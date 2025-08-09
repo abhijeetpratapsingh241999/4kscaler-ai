@@ -1,63 +1,83 @@
-import React, { useState } from 'react';
-import PageContainer from '../components/layout/PageContainer';
-import ShowcaseTab from '../components/explore/ShowcaseTab';
-import PromptLibraryTab from '../components/explore/PromptLibraryTab';
-import StylesAndGuidesTab from '../components/explore/StylesAndGuidesTab';
-import { CameraIcon, SparklesIcon, BookOpenIcon } from '@heroicons/react/24/outline';
+// src/pages/ExplorePage.tsx
 
-type TabName = 'Showcase' | 'Prompt Library' | 'Styles & Guides';
+import React, { useState, useEffect, useRef } from 'react';
+import PageContainer from '../components/layout/PageContainer'; 
+import ExploreHeader from '../components/explore/mainfile/ExploreHeader';
+import ExploreTabs from '../components/explore/mainfile/ExploreTabs';
+import ExploreGrid from '../components/explore/mainfile/ExploreGrid';
+// SortOption ko import kiya gaya hai
+import { SortOption } from '../components/explore/ui/FilterPopup';
 
-const tabs = [
-  { name: 'Showcase', icon: CameraIcon },
-  { name: 'Prompt Library', icon: SparklesIcon },
-  { name: 'Styles & Guides', icon: BookOpenIcon },
-];
+const addGoogleFont = (fontFamily: string) => {
+  const fontId = `google-font-${fontFamily.replace(' ', '-')}`;
+  if (document.getElementById(fontId)) return;
+  const link = document.createElement('link');
+  link.id = fontId;
+  link.href = `https://fonts.googleapis.com/css2?family=${fontFamily.replace(' ', '+')}:wght@400;500;600;700&display=swap`;
+  link.rel = 'stylesheet';
+  document.head.appendChild(link);
+};
 
 const ExplorePage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<TabName>('Showcase');
+    const [activeFilter, setActiveFilter] = useState('All');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [isTabsSticky, setIsTabsSticky] = useState(false);
+    // Sorting ke liye nayi state banayi gayi hai
+    const [currentSort, setCurrentSort] = useState<SortOption>('Trending');
 
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'Showcase':
-        return <ShowcaseTab />;
-      case 'Prompt Library':
-        return <PromptLibraryTab />;
-      case 'Styles & Guides':
-        return <StylesAndGuidesTab />;
-      default:
-        return <ShowcaseTab />;
-    }
-  };
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  return (
-    <PageContainer>
-      {/* Tab Navigation */}
-      <div className="mb-8 flex justify-center">
-        {/* Yahan badlav kiya gaya hai: Container ka background ab hamesha kaala rahega */}
-        <div className="p-1.5 rounded-lg flex gap-2 bg-black shadow-lg">
-          {tabs.map((tab) => (
-            <button
-              key={tab.name}
-              onClick={() => setActiveTab(tab.name as TabName)}
-              className={`flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-md transition-all duration-300 ${
-                activeTab === tab.name
-                  ? 'bg-gradient-to-r from-blue-500 to-pink-500 text-white shadow-lg' // Active state
-                  : 'text-slate-200 hover:bg-slate-800' // Inactive state
-              }`}
-            >
-              <tab.icon className="w-5 h-5" />
-              <span className={`${activeTab === tab.name ? '[text-shadow:0_0_8px_rgba(255,255,255,0.5)]' : ''}`}>{tab.name}</span>
-            </button>
-          ))}
-        </div>
-      </div>
+    useEffect(() => {
+        addGoogleFont('Poppins');
+        addGoogleFont('Inter');
 
-      {/* Tab Content */}
-      <div>
-        {renderContent()}
-      </div>
-    </PageContainer>
-  );
+        const scrollContainer = scrollContainerRef.current;
+        const headerEl = scrollContainer?.querySelector('header');
+        
+        if (!scrollContainer || !headerEl) return;
+
+        const headerHeight = headerEl.offsetHeight;
+
+        const handleScroll = () => {
+            if (scrollContainer.scrollTop > headerHeight) {
+                setIsTabsSticky(true);
+            } else {
+                setIsTabsSticky(false);
+            }
+        };
+
+        scrollContainer.addEventListener('scroll', handleScroll);
+        return () => scrollContainer.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    return (
+        <PageContainer>
+            <div ref={scrollContainerRef} className="h-full overflow-y-auto no-scrollbar">
+                <ExploreHeader 
+                    searchQuery={searchQuery}
+                    onSearchChange={setSearchQuery}
+                />
+                <ExploreTabs 
+                    activeTab={activeFilter} 
+                    onTabClick={setActiveFilter}
+                    isSticky={isTabsSticky}
+                    // Error theek karne ke liye yeh dono props pass kiye gaye hain
+                    currentSort={currentSort}
+                    onSortChange={setCurrentSort}
+                />
+                <ExploreGrid 
+                    activeFilter={activeFilter} 
+                    searchQuery={searchQuery}
+                    // Sorting ki value ko grid mein bhi pass kiya gaya hai
+                    currentSort={currentSort}
+                />
+            </div>
+            <style>{`
+                .no-scrollbar::-webkit-scrollbar { display: none; }
+                .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+            `}</style>
+        </PageContainer>
+    );
 };
 
 export default ExplorePage;

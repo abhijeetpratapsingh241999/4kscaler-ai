@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Bars3Icon, SunIcon, MoonIcon } from '@heroicons/react/24/solid';
 import { useApp } from '../../contexts/AppContext';
 import ProfilePopup from '../ui/ProfilePopup';
-
+import CreditsBox from '../header/CreditsBox'; // CreditsBox ko yahan import kiya gaya hai
 
 type HeaderProps = {
   onMobileMenuToggle: () => void;
@@ -39,6 +39,9 @@ const Header: React.FC<HeaderProps> = ({ onMobileMenuToggle }) => {
         >
           {theme === 'dark' ? <SunIcon className="w-5 h-5" /> : <MoonIcon className="w-5 h-5" />}
         </button>
+
+        {/* CreditsBox component ko yahan add kiya gaya hai */}
+        <CreditsBox />
         
         {isLoggedIn ? (
           <div className="relative" ref={profileRef}>
